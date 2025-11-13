@@ -1,8 +1,7 @@
 """
-Hostel Management SRS Conflict Detection Pipeline - COMPLETE IMPROVED VERSION
-Using Enhanced Techniques for Better Performance
+Hostel Management SRS Conflict Detection Pipeline - COMPLETEd
 
-Key Improvements:
+Key Improvements: IMportant (flow of the project)
 1. Binary Relevance (separate classifier per conflict type)
 2. Feature augmentation with TF-IDF
 3. More balanced dataset (300 requirements)
@@ -34,9 +33,9 @@ except ImportError:
     print("  XGBoost not available. Install with: pip install xgboost")
     XGBOOST_AVAILABLE = False
 
-# ============================================================================
+
 # PART 1: ENHANCED DATASET GENERATION (300 requirements, more balanced)
-# ============================================================================
+
 
 def generate_hostel_requirements() -> pd.DataFrame:
     """
@@ -46,7 +45,7 @@ def generate_hostel_requirements() -> pd.DataFrame:
     
     requirements = []
     
-    # Budget Conflicts (75 requirements - increased from 50)
+    # Budget Conflicts (75 requirements - increased from 50)  # Dataset Created by self
     budget_reqs = [
         ("System must support premium features with enterprise-grade security", ["Budget", "Security"]),
         ("Implement basic room booking with minimal infrastructure cost", ["Budget"]),
@@ -380,9 +379,9 @@ def generate_hostel_requirements() -> pd.DataFrame:
     return pd.DataFrame(requirements)
 
 
-# ============================================================================
-# PART 2: SENTENCE TRANSFORMER EMBEDDINGS
-# ============================================================================
+
+# PART 2: SENTENCE TRANSFORMER EMBEDDINGS # Not using the indicbert but using a smaller embedding model
+
 
 class SentenceEmbedder:
     """
@@ -440,9 +439,9 @@ class SentenceEmbedder:
         return all_embeddings
 
 
-# ============================================================================
-# PART 3: FEATURE AUGMENTATION WITH TF-IDF
-# ============================================================================
+
+# PART 3: FEATURE AUGMENTATION WITH TF-IDF # Hybrid TF-IDF + mINIlm6
+
 
 def create_hybrid_features(texts, embeddings):
     """
@@ -477,9 +476,9 @@ def create_hybrid_features(texts, embeddings):
     return hybrid_features, tfidf
 
 
-# ============================================================================
+
 # PART 4: ENHANCED TRAINING WITH BINARY RELEVANCE
-# ============================================================================
+
 
 def train_conflict_detector_enhanced(df, features):
     """
@@ -506,7 +505,7 @@ def train_conflict_detector_enhanced(df, features):
     print(f"   Training samples: {len(X_train)}")
     print(f"   Test samples: {len(X_test)}")
     
-    # Choose classifier based on availability
+    #  classifier based on availability checking availabilty
     if XGBOOST_AVAILABLE:
         print("\n Training XGBoost classifiers (Binary Relevance)...")
         base_classifier = XGBClassifier(
@@ -584,9 +583,9 @@ def train_conflict_detector_enhanced(df, features):
     return model, metrics
 
 
-# ============================================================================
+
 # PART 5: PREDICTION AND RESULTS
-# ============================================================================
+
 
 def predict_conflicts(requirements, model, features):
     """
@@ -658,9 +657,9 @@ def display_sample_predictions(results_df, n_samples=10):
             print()
 
 
-# ============================================================================
+
 # PART 6: MAIN EXECUTION
-# ============================================================================
+
 
 def main():
     """
@@ -757,9 +756,9 @@ def main():
     return model, results, metrics
 
 
-# ============================================================================
+
 # PART 7: MISTRAL AI RESOLUTION GENERATION (Add this after PART 6)
-# ============================================================================
+
 
 def generate_mistral_resolutions(top_conflicts_df, api_key=None):
     """
@@ -886,4 +885,5 @@ def display_conflicts_with_resolutions(conflicts_df):
 
 
 if __name__ == "__main__":
+
     model, results, metrics = main()
